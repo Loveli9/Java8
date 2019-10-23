@@ -17,6 +17,7 @@ public class StreamBasic {
         System.out.println("---");
 
         // Java 8
+        //卡路里大于400 升序排列
         getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
 
     }
