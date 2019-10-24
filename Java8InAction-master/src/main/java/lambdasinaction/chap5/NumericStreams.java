@@ -32,13 +32,13 @@ public class NumericStreams{
             // we can choose a default value
             max = 1;
         }
-        System.out.println(max);
+        System.out.println("max = " + max);
 
         // numeric ranges
         IntStream evenNumbers = IntStream.rangeClosed(1, 100)
                                  .filter(n -> n % 2 == 0);
 
-        System.out.println(evenNumbers.count());
+        System.out.println("evenNumbers = "+ evenNumbers.count());
 
         Stream<int[]> pythagoreanTriples =
                IntStream.rangeClosed(1, 100).boxed()

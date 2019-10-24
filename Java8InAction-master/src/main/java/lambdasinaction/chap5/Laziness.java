@@ -23,7 +23,7 @@ public class Laziness {
                        })
                        .limit(2)
                        .collect(toList());
-
+        twoEvenSquares.stream().forEach(System.out::println);
     }
 
 

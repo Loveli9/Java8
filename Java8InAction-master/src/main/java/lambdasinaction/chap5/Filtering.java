@@ -16,10 +16,11 @@ public class Filtering{
             menu.stream()
                 .filter(Dish::isVegetarian)
                 .collect(toList());
-
+        System.out.println("过滤收集");
         vegetarianMenu.forEach(System.out::println);
 
         // Filtering unique elements
+        System.out.println("元素去重");
         List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
         numbers.stream()
                .filter(i -> i % 2 == 0)
@@ -32,16 +33,16 @@ public class Filtering{
                 .filter(d -> d.getCalories() > 300)
                 .limit(3)
                 .collect(toList());
-
+        System.out.println("前三个元素");
         dishesLimit3.forEach(System.out::println);
 
-        // Skipping elements
+        // Skipping elements 跳过前两个元素
         List<Dish> dishesSkip2 =
             menu.stream()
                 .filter(d -> d.getCalories() > 300)
                 .skip(2)
                 .collect(toList());
-
+        System.out.println("跳过前两个元素");
         dishesSkip2.forEach(System.out::println);
     }
 }
