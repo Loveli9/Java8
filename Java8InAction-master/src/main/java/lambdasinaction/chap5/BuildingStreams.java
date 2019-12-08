@@ -33,7 +33,7 @@ public class BuildingStreams {
         
         Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1],t[0] + t[1]})
               .limit(10)
-              . map(t -> t[0])  
+              .map(t -> t[0])
               .forEach(System.out::println);
 
         // random stream of doubles with Stream.generate
@@ -47,6 +47,7 @@ public class BuildingStreams {
                  .forEach(System.out::println);
 
         IntStream.generate(new IntSupplier(){
+            @Override
             public int getAsInt(){
                 return 2;
             }
@@ -57,6 +58,7 @@ public class BuildingStreams {
         IntSupplier fib = new IntSupplier(){
                   private int previous = 0;
                   private int current = 1;
+                  @Override
                   public int getAsInt(){
                       int nextValue = this.previous + this.current;
                       this.previous = this.current;

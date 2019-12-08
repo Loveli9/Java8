@@ -31,7 +31,7 @@ public class GroupingTransactions {
             Currency currency = transaction.getCurrency();
             List<Transaction> transactionsForCurrency = transactionsByCurrencies.get(currency);
             if (transactionsForCurrency == null) {
-                    transactionsForCurrency = new ArrayList<>();
+                transactionsForCurrency = new ArrayList<>();
                 transactionsByCurrencies.put(currency, transactionsForCurrency);
             }
             transactionsForCurrency.add(transaction);
@@ -41,7 +41,8 @@ public class GroupingTransactions {
     }
 
     private static void groupFunctionally() {
-        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency));
+        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream().
+                collect(groupingBy(Transaction::getCurrency));
         System.out.println(transactionsByCurrencies);
     }
 

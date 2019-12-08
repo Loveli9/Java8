@@ -49,8 +49,9 @@ public class BestPriceFinder {
     public List<String> findPricesFuture(String product) {
         List<CompletableFuture<String>> priceFutures =
                 shops.stream()
-                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getName() + " price is "
-                        + shop.getPrice(product), executor))
+                .map(shop -> CompletableFuture.supplyAsync(
+                        () -> shop.getName() + " price is " +
+                                shop.getPrice(product), executor))
                 .collect(Collectors.toList());
 
         List<String> prices = priceFutures.stream()

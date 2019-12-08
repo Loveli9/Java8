@@ -10,13 +10,21 @@ public class Grouping {
     enum CaloricLevel { DIET, NORMAL, FAT };
 
     public static void main(String ... args) {
+        //按照类型分组
         System.out.println("Dishes grouped by type: " + groupDishesByType());
+        //按照枚举分组
         System.out.println("Dishes grouped by caloric level: " + groupDishesByCaloricLevel());
+        //多级分组
         System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
+        //分组统计
         System.out.println("Count dishes in groups: " + countDishesInGroups());
+        //分组统计最大的
         System.out.println("Most caloric dishes by type: " + mostCaloricDishesByType());
+        //分组统计最大的
         System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOprionals());
+        //按照类型分组，每一组卡路里求和
         System.out.println("Sum calories by type: " + sumCaloriesByType());
+        //根据类型分组，按卡路里划分等级
         System.out.println("Caloric levels by type: " + caloricLevelsByType());
     }
 
@@ -27,9 +35,13 @@ public class Grouping {
     private static Map<CaloricLevel, List<Dish>> groupDishesByCaloricLevel() {
         return menu.stream().collect(
                 groupingBy(dish -> {
-                    if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-                    else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-                    else return CaloricLevel.FAT;
+                    if (dish.getCalories() <= 400) {
+                        return CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return CaloricLevel.NORMAL;
+                    } else {
+                        return CaloricLevel.FAT;
+                    }
                 } ));
     }
 
@@ -37,9 +49,13 @@ public class Grouping {
         return menu.stream().collect(
                 groupingBy(Dish::getType,
                         groupingBy((Dish dish) -> {
-                            if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-                            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-                            else return CaloricLevel.FAT;
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
                         } )
                 )
         );
@@ -71,9 +87,14 @@ public class Grouping {
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
         return menu.stream().collect(
                 groupingBy(Dish::getType, mapping(
-                        dish -> { if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-                        else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-                        else return CaloricLevel.FAT; },
+                        dish -> { if (dish.getCalories() <= 400) {
+                            return CaloricLevel.DIET;
+                        } else if (dish.getCalories() <= 700) {
+                            return CaloricLevel.NORMAL;
+                        } else {
+                            return CaloricLevel.FAT;
+                        }
+                        },
                         toSet() )));
     }
 }

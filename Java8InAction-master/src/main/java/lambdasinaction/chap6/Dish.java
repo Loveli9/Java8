@@ -1,7 +1,10 @@
 package lambdasinaction.chap6;
 
+import lombok.Data;
+
 import java.util.*;
 
+@Data
 public class Dish {
 
     private final String name;
@@ -16,28 +19,7 @@ public class Dish {
         this.type = type;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public boolean isVegetarian() {
-        return vegetarian;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
     public enum Type { MEAT, FISH, OTHER }
-
-    @Override
-    public String toString() {
-        return name;
-    }
 
     public static final List<Dish> menu =
             Arrays.asList( new Dish("pork", false, 800, Dish.Type.MEAT),

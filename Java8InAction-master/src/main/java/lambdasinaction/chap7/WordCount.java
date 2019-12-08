@@ -23,7 +23,9 @@ public class WordCount {
             if (Character.isWhitespace(c)) {
                 lastSpace = true;
             } else {
-                if (lastSpace) counter++;
+                if (lastSpace){
+                    counter++;
+                }
                 lastSpace = Character.isWhitespace(c);
             }
         }
@@ -31,8 +33,6 @@ public class WordCount {
     }
 
     public static int countWords(String s) {
-        //Stream<Character> stream = IntStream.range(0, s.length())
-        //                                    .mapToObj(SENTENCE::charAt).parallel();
         Spliterator<Character> spliterator = new WordCounterSpliterator(s);
         Stream<Character> stream = StreamSupport.stream(spliterator, true);
 

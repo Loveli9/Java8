@@ -9,13 +9,21 @@ import static lambdasinaction.chap6.Dish.menu;
 public class Summarizing {
 
     public static void main(String ... args) {
+        //记录总数
         System.out.println("Nr. of dishes: " + howManyDishes());
+        //卡路里最多
         System.out.println("The most caloric dish is: " + findMostCaloricDish());
+        //卡路里最多
         System.out.println("The most caloric dish is: " + findMostCaloricDishUsingComparator());
+        //卡路里总数
         System.out.println("Total calories in menu: " + calculateTotalCalories());
+        //卡路里平均值
         System.out.println("Average calories in menu: " + calculateAverageCalories());
+        //卡路里汇总：总数，max，min，sum，平均值
         System.out.println("Menu statistics: " + calculateMenuStatistics());
+        //记录总数
         System.out.println("Short menu: " + getShortMenu());
+        //记录总数
         System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
     }
 
@@ -47,7 +55,7 @@ public class Summarizing {
     }
 
     private static String getShortMenu() {
-        return menu.stream().map(Dish::getName).collect(joining());
+        return menu.stream().map(Dish::getName).collect(joining(","));
     }
 
     private static String getShortMenuCommaSeparated() {
