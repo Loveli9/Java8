@@ -8,6 +8,8 @@ public class ParallelStreamsHarness {
     public static final ForkJoinPool FORK_JOIN_POOL = new ForkJoinPool();
 
     public static void main(String[] args) {
+        int count = Runtime.getRuntime().availableProcessors();
+        System.out.println("count = " + count);
         System.out.println("Iterative Sum done in: " + measurePerf(ParallelStreams::iterativeSum, 10_000_000L) + " msecs");
         System.out.println("Sequential Sum done in: " + measurePerf(ParallelStreams::sequentialSum, 10_000_000L) + " msecs");
         System.out.println("Parallel forkJoinSum done in: " + measurePerf(ParallelStreams::parallelSum, 10_000_000L) + " msecs" );
