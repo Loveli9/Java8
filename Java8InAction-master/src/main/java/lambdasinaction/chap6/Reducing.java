@@ -10,6 +10,10 @@ public class Reducing {
         System.out.println("Total calories in menu: " + calculateTotalCalories());
         //计算总共的卡路里
         System.out.println("Total calories in menu: " + calculateTotalCaloriesWithMethodReference());
+
+        /**
+         * 推荐求和方法
+         * */
         //计算总共的卡路里
         System.out.println("Total calories in menu: " + calculateTotalCaloriesWithoutCollectors());
         //计算总共的卡路里

@@ -10,10 +10,31 @@ import static java.util.stream.Collector.Characteristics.*;
 public class PartitionPrimeNumbers {
 
     public static void main(String ... args) {
-        System.out.println("Numbers partitioned in prime and non-prime: " +
-                partitionPrimes(100));
-        System.out.println("Numbers partitioned in prime and non-prime: " +
-                partitionPrimesWithCustomCollector(100));
+//        System.out.println("Numbers partitioned in prime and non-prime: " +
+//                partitionPrimes(100));
+//        System.out.println("Numbers partitioned in prime and non-prime: " +
+//                partitionPrimesWithCustomCollector(100));
+        long fastTest1 = Long.MAX_VALUE;
+        for (int i = 0;i < 10;i++) {
+            long start = System.nanoTime();
+            partitionPrimes(1_000_000);
+            long duration1 = (System.nanoTime() - start) / 1_000_000;
+            if(duration1 < fastTest1) {
+                fastTest1 = duration1;
+            }
+        }
+        System.out.println("partitionPrimes执行时间=" + fastTest1);
+
+        long fastTest2 = Long.MAX_VALUE;
+        for (int i = 0;i < 10;i++) {
+            long start = System.nanoTime();
+            partitionPrimesWithCustomCollector(1_000_000);
+            long duration2 = (System.nanoTime() - start) / 1_000_000;
+            if(duration2 < fastTest2) {
+                fastTest2 = duration2;
+            }
+        }
+        System.out.println("partitionPrimesWithCustomCollector执行时间=" + fastTest2);
 
     }
 
@@ -35,7 +56,8 @@ public class PartitionPrimeNumbers {
     public static boolean isPrime(List<Integer> primes, Integer candidate) {
         double candidateRoot = Math.sqrt((double) candidate);
         //return primes.stream().filter(p -> p < candidateRoot).noneMatch(p -> candidate % p == 0);
-        return takeWhile(primes, i -> i <= candidateRoot).stream().noneMatch(i -> candidate % i == 0);
+        return takeWhile(primes, i -> i <= candidateRoot).stream().
+                noneMatch(i -> candidate % i == 0);
     }
 
     public static <A> List<A> takeWhile(List<A> list, Predicate<A> p) {
@@ -50,7 +72,8 @@ public class PartitionPrimeNumbers {
     }
 
     public static class PrimeNumbersCollector
-            implements Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>> {
+            implements Collector<Integer, Map<Boolean, List<Integer>>,
+            Map<Boolean, List<Integer>>> {
 
         @Override
         public Supplier<Map<Boolean, List<Integer>>> supplier() {
